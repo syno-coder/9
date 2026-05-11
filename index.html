@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0B0F19" />
+<title>Azeel Studio — Create viral thumbnails & reels in minutes</title>
+<meta name="description" content="Professional creator tools with powerful editing, templates, layers, and exports — directly in your browser." />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="landing">
+
+<!-- NAVBAR -->
+<header class="nav glass">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" aria-label="Azeel Studio home">
+      <span class="brand-mark"></span>
+      <span class="brand-name">Azeel <em>Studio</em></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#templates">Templates</a>
+      <a href="#faq">FAQ</a>
+      <a href="#stats">Trust</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="editor.html" class="btn btn-primary">Start Editing</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="navMobile" hidden>
+    <a href="#features">Features</a>
+    <a href="#templates">Templates</a>
+    <a href="#faq">FAQ</a>
+    <a href="editor.html" class="btn btn-primary full">Start Editing</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="chip">
+        <span class="dot"></span> New · AI-assisted layout engine
+      </span>
+      <h1>Create <span class="grad">viral thumbnails</span> &amp; reels in minutes.</h1>
+      <p class="lead">Professional creator tools with powerful editing, templates, layers, and exports — directly in your browser. No installs. No watermarks. Built for creators.</p>
+      <div class="hero-cta">
+        <a href="editor.html" class="btn btn-primary lg">Start Editing →</a>
+        <a href="#templates" class="btn btn-ghost lg">Explore Templates</a>
+      </div>
+      <div class="trust-row">
+        <div><strong>4.9/5</strong><span>Creator rating</span></div>
+        <div><strong>120k+</strong><span>Designs exported</span></div>
+        <div><strong>Free</strong><span>Forever plan</span></div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="float-card card-a glass">
+        <div class="thumb-mock">
+          <div class="thumb-bg"></div>
+          <div class="thumb-text">EPIC<br/>SETUP</div>
+          <div class="thumb-badge">NEW</div>
+        </div>
+      </div>
+      <div class="float-card card-b glass">
+        <div class="layer-row"><span class="lyr-dot"></span> Background</div>
+        <div class="layer-row active"><span class="lyr-dot"></span> Title text</div>
+        <div class="layer-row"><span class="lyr-dot"></span> Glow shape</div>
+        <div class="layer-row"><span class="lyr-dot"></span> Sticker</div>
+      </div>
+      <div class="float-card card-c glass">
+        <div class="mini-toolbar">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="mini-canvas"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Features</span>
+      <h2>Everything you need to ship great content</h2>
+      <p>A complete creator studio — from blank canvas to final export. Optimised for speed, designed for craft.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="feature glass"><div class="ft-icon ft1"></div><h3>Thumbnail Maker</h3><p>Pixel-perfect 1280×720 with smart guides, snapping and one-click export.</p></article>
+      <article class="feature glass"><div class="ft-icon ft2"></div><h3>Reels Creator</h3><p>1080×1920 vertical canvas with safe areas for captions and CTAs.</p></article>
+      <article class="feature glass"><div class="ft-icon ft3"></div><h3>Image Editor</h3><p>Brightness, contrast, saturation, blur, sharpen — all non-destructive.</p></article>
+      <article class="feature glass"><div class="ft-icon ft4"></div><h3>Layer System</h3><p>Reorder, lock, hide, group. Real layers, not stacking hacks.</p></article>
+      <article class="feature glass"><div class="ft-icon ft5"></div><h3>Smart Export</h3><p>PNG / JPG / WEBP at 1×, 2× or custom scale with quality control.</p></article>
+      <article class="feature glass"><div class="ft-icon ft6"></div><h3>Autosave</h3><p>Your work is saved locally as you edit. Restore any time, even offline.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- TEMPLATES -->
+<section id="templates" class="section alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Templates</span>
+      <h2>Start from a pro template, finish in minutes</h2>
+      <p>Hand-crafted layouts for gaming, vlogs, tech, podcasts and education.</p>
+    </div>
+    <div class="grid grid-4 templates-grid" id="templatesGrid"></div>
+    <div class="center mt-32"><a href="editor.html" class="btn btn-primary">Open Editor →</a></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats" class="section">
+  <div class="container">
+    <div class="stats glass">
+      <div><strong>120K+</strong><span>Designs exported</span></div>
+      <div><strong>30K+</strong><span>Active creators</span></div>
+      <div><strong>12+</strong><span>Pro templates</span></div>
+      <div><strong>4.9★</strong><span>Average rating</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Loved by creators</span>
+      <h2>What creators are saying</h2>
+    </div>
+    <div class="grid grid-3">
+      <blockquote class="quote glass"><p>“Replaced three tools in my workflow. The export quality is absurd.”</p><footer>— Maya R., Gaming creator</footer></blockquote>
+      <blockquote class="quote glass"><p>“The layers panel feels like Figma. Finally a thumbnail tool that respects my time.”</p><footer>— Daniel O., Tech YouTuber</footer></blockquote>
+      <blockquote class="quote glass"><p>“I batch 20 reels a week now. Templates + autosave = unstoppable.”</p><footer>— Aiko T., Lifestyle vlogger</footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section alt">
+  <div class="container narrow">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq" id="faqList">
+      <details><summary>Is Azeel Studio really free?</summary><p>Yes. The core editor, templates and exports are free forever. We may add optional pro features later.</p></details>
+      <details><summary>Do my files leave my device?</summary><p>No. Editing happens 100% in your browser. Autosave uses local storage on your device.</p></details>
+      <details><summary>Can I install it as an app?</summary><p>Yes. Azeel Studio is a PWA — install it from your browser menu for offline use.</p></details>
+      <details><summary>What formats can I export?</summary><p>PNG, JPG and WEBP at 1×, 2× or custom scale, with adjustable quality.</p></details>
+      <details><summary>Does it work on mobile?</summary><p>Absolutely. The editor is touch-first with pinch-zoom, drag and gesture controls.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-card glass">
+      <h2>Your next viral thumbnail is one click away.</h2>
+      <p>Open the editor and ship something great in the next 10 minutes.</p>
+      <a href="editor.html" class="btn btn-primary lg">Start Creating Free →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="index.html" class="brand"><span class="brand-mark"></span><span class="brand-name">Azeel <em>Studio</em></span></a>
+      <p class="muted small mt-12">Create thumbnails &amp; reels fast — pro results.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="editor.html">Editor</a>
+      <a href="#templates">Templates</a>
+      <a href="#features">Features</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Blog</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span class="muted small">© <span id="yr"></span> Azeel Studio. All rights reserved.</span>
+    <div class="socials" aria-label="Social links">
+      <a href="#" aria-label="Twitter">𝕏</a>
+      <a href="#" aria-label="YouTube">▶</a>
+      <a href="#" aria-label="Instagram">◎</a>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

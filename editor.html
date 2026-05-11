@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+<meta name="theme-color" content="#0B0F19" />
+<title>Azeel Studio — Editor</title>
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;600;800;900&family=Bebas+Neue&family=Anton&family=Montserrat:wght@600;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="editor-body">
+
+<!-- TOP BAR -->
+<header class="topbar glass">
+  <div class="tb-left">
+    <a href="index.html" class="brand sm" aria-label="Home">
+      <span class="brand-mark"></span>
+      <span class="brand-name">Azeel <em>Studio</em></span>
+    </a>
+    <input id="projectName" class="proj-name" value="Untitled design" aria-label="Project name" maxlength="60" />
+  </div>
+  <div class="tb-center">
+    <button class="ico-btn" id="undoBtn" title="Undo (Ctrl+Z)">↶</button>
+    <button class="ico-btn" id="redoBtn" title="Redo (Ctrl+Shift+Z)">↷</button>
+    <span class="sep"></span>
+    <button class="ico-btn" id="zoomOut" title="Zoom out">−</button>
+    <span id="zoomLabel" class="zoom-label">100%</span>
+    <button class="ico-btn" id="zoomIn" title="Zoom in">＋</button>
+    <button class="ico-btn" id="zoomFit" title="Fit">⤢</button>
+  </div>
+  <div class="tb-right">
+    <button class="btn btn-ghost sm" id="helpBtn" title="Shortcuts (?)">?</button>
+    <button class="btn btn-ghost sm" id="saveBtn" title="Save project (.azeel.json)">Save</button>
+    <button class="btn btn-ghost sm" id="loadBtn" title="Load project">Load</button>
+    <button class="btn btn-primary sm" id="exportBtn">Export</button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="editor-main">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="left-bar glass" id="leftBar">
+    <button class="tool" data-panel="templates" title="Templates"><span class="ti">⌘</span><b>Templates</b></button>
+    <button class="tool" data-panel="upload" title="Upload"><span class="ti">⬆</span><b>Upload</b></button>
+    <button class="tool" data-panel="text" title="Text"><span class="ti">T</span><b>Text</b></button>
+    <button class="tool" data-panel="shapes" title="Shapes"><span class="ti">◯</span><b>Shapes</b></button>
+    <button class="tool" data-panel="stickers" title="Stickers"><span class="ti">★</span><b>Stickers</b></button>
+    <button class="tool" data-panel="adjust" title="Adjust"><span class="ti">✦</span><b>Adjust</b></button>
+    <button class="tool" data-panel="resize" title="Canvas size"><span class="ti">▭</span><b>Size</b></button>
+  </aside>
+
+  <!-- TOOL PANEL -->
+  <section class="tool-panel glass" id="toolPanel" aria-live="polite"></section>
+
+  <!-- CANVAS AREA -->
+  <section class="canvas-area" id="canvasArea">
+    <div class="canvas-wrap" id="canvasWrap">
+      <div class="canvas-stage" id="canvasStage">
+        <canvas id="mainCanvas" width="1280" height="720"></canvas>
+        <div class="overlay" id="overlay"></div>
+      </div>
+    </div>
+    <div class="empty-hint" id="emptyHint">
+      <div class="eh-icon">✦</div>
+      <h3>Start designing</h3>
+      <p>Pick a template, upload an image, or add text from the left panel.</p>
+    </div>
+  </section>
+
+  <!-- RIGHT PROPERTIES -->
+  <aside class="right-bar glass" id="rightBar">
+    <div class="rb-tabs">
+      <button class="rb-tab active" data-tab="props">Properties</button>
+      <button class="rb-tab" data-tab="layers">Layers</button>
+    </div>
+    <div class="rb-content" id="rbProps"></div>
+    <div class="rb-content" id="rbLayers" hidden></div>
+  </aside>
+</main>
+
+<!-- MOBILE BOTTOM BAR -->
+<nav class="bottom-bar glass" id="bottomBar" aria-label="Editor tools">
+  <button class="bb-tool" data-panel="templates"><span>⌘</span><b>Tpl</b></button>
+  <button class="bb-tool" data-panel="upload"><span>⬆</span><b>Upload</b></button>
+  <button class="bb-tool" data-panel="text"><span>T</span><b>Text</b></button>
+  <button class="bb-tool" data-panel="shapes"><span>◯</span><b>Shape</b></button>
+  <button class="bb-tool" data-panel="stickers"><span>★</span><b>Sticker</b></button>
+  <button class="bb-tool" data-panel="adjust"><span>✦</span><b>Adjust</b></button>
+  <button class="bb-tool" data-panel="layers"><span>≡</span><b>Layers</b></button>
+</nav>
+
+<!-- MOBILE SHEET -->
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-handle"></div>
+  <div class="sheet-head"><h3 id="sheetTitle">Tool</h3><button class="ico-btn" id="sheetClose">✕</button></div>
+  <div class="sheet-body" id="sheetBody"></div>
+</div>
+<div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+
+<!-- EXPORT MODAL -->
+<div class="modal" id="exportModal" hidden>
+  <div class="modal-backdrop" data-close="1"></div>
+  <div class="modal-card glass">
+    <header><h3>Export design</h3><button class="ico-btn" data-close="1">✕</button></header>
+    <div class="modal-body export-body">
+      <div class="export-preview"><img id="exportPreview" alt="Export preview" /></div>
+      <div class="export-controls">
+        <label>Format
+          <select id="expFormat">
+            <option value="png">PNG (lossless)</option>
+            <option value="jpeg">JPG (smaller)</option>
+            <option value="webp">WEBP (modern)</option>
+          </select>
+        </label>
+        <label>Scale
+          <select id="expScale">
+            <option value="1">1× (original)</option>
+            <option value="2" selected>2× (recommended)</option>
+            <option value="3">3× (max quality)</option>
+          </select>
+        </label>
+        <label>Quality <span id="qLabel">92%</span>
+          <input type="range" id="expQuality" min="40" max="100" value="92" />
+        </label>
+        <label class="checkrow">
+          <input type="checkbox" id="expTransparent" /> Transparent background (PNG/WEBP)
+        </label>
+        <label>File name
+          <input type="text" id="expName" value="azeel-design" />
+        </label>
+        <div class="export-actions">
+          <button class="btn btn-ghost" id="expCopy">Copy to clipboard</button>
+          <button class="btn btn-primary" id="expDownload">Download</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HELP MODAL -->
+<div class="modal" id="helpModal" hidden>
+  <div class="modal-backdrop" data-close="1"></div>
+  <div class="modal-card glass">
+    <header><h3>Keyboard shortcuts</h3><button class="ico-btn" data-close="1">✕</button></header>
+    <div class="modal-body">
+      <ul class="shortcuts">
+        <li><kbd>Ctrl</kbd>+<kbd>Z</kbd> <span>Undo</span></li>
+        <li><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> <span>Redo</span></li>
+        <li><kbd>Ctrl</kbd>+<kbd>D</kbd> <span>Duplicate selected</span></li>
+        <li><kbd>Delete</kbd> <span>Remove selected</span></li>
+        <li><kbd>Ctrl</kbd>+<kbd>S</kbd> <span>Open export</span></li>
+        <li><kbd>Arrows</kbd> <span>Nudge 1px</span></li>
+        <li><kbd>Shift</kbd>+<kbd>Arrows</kbd> <span>Nudge 10px</span></li>
+        <li><kbd>Esc</kbd> <span>Close modal / deselect</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-host" id="toastHost" aria-live="polite"></div>
+
+<!-- HIDDEN INPUTS -->
+<input type="file" id="fileInput" accept="image/*" hidden />
+<input type="file" id="projInput" accept=".json,application/json" hidden />
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
